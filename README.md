@@ -7,17 +7,18 @@
 
 **Safe partitioning (hard rule)**:
 
-* **Domain A — Therapy & sensing (in-can, real-time)**: analog front-end for intracardiac sensing, pacing output stage, timing/control, watchdogs, sealed firmware; deterministic and power-budgeted. Think ultra-low-power MCU/ASIC + RTOS, IEC 62304 Class C. Classic block diagrams remain accurate (sensing → filtering/ADC → microcontroller → pulse generator → memory/power/telemetry). jcomputers.usSpringerLink
-	• Domain B — In-can comms & very small inference: authenticated telemetry (MICS/MedRadio 402–405 MHz; sometimes BLE) and only tiny, verifiable algorithms (e.g., morphology features, simple anomaly thresholds). Anything compute-hungry stays out of the can due to battery and validation constraints. PMCBioMed Central
-	• Domain C — External relay + cloud (“central intelligence”): phone or bedside hub relays device data; the cloud runs heavy ML for triage, prediction, cohort analytics, and fleet risk. This is how current AI features ship in practice (e.g., Medtronic AccuRhythm AI runs in the CareLink cloud). Medtronic
+* **Domain A — Therapy & sensing (in-can, real-time)**: analog front-end for intracardiac sensing, pacing output stage, timing/control, watchdogs, sealed firmware; deterministic and power-budgeted. Think ultra-low-power MCU/ASIC + RTOS, IEC 62304 Class C. Classic block diagrams remain accurate (sensing → filtering/ADC → microcontroller → pulse generator → memory/power/telemetry). [jcomputers.us](https://www.jcomputers.us/vol3/jcp0308-06.pdf?utm_source=chatgpt.com)    [SpringerLink](https://link.springer.com/content/pdf/10.1007/978-1-4757-5683-8_1.pdf?pdf=inline+link&utm_source=chatgpt.com)
+* **Domain B — In-can comms & very small inference**: authenticated telemetry (MICS/MedRadio 402–405 MHz; sometimes BLE) and only tiny, verifiable algorithms (e.g., morphology features, simple anomaly thresholds). Anything compute-hungry stays out of the can due to battery and validation constraints. [PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC10385670/?utm_source=chatgpt.com) [BioMed Central](https://biomedical-engineering-online.biomedcentral.com/articles/10.1186/s12938-024-01277-1?utm_source=chatgpt.com)
+* **Domain C — External relay + cloud (“central intelligence”)**: phone or bedside hub relays device data; the cloud runs heavy ML for triage, prediction, cohort analytics, and fleet risk. This is how current AI features ship in practice (e.g., Medtronic AccuRhythm AI runs in the CareLink cloud). [Medtronic](https://www.medtronic.com/en-us/healthcare-professionals/products/cardiac-rhythm/technologies/accurhythm-ai-algorithms.html?utm_source=chatgpt.com)
 
-Connectivity realities (important for your diagrams):
-	• Implants historically talk over MICS/MedRadio because tissue attenuation and power budgets make Wi-Fi/5G in-can impractical. BLE is now common for patient-app pairing; full IP stacks live in the phone/hub. PMCBioMed Central
-	• Concrete examples: Medtronic BlueSync (BLE → MyCareLink app/network); Abbott Gallant ICD/CRT-D (Bluetooth → myMerlinPulse). Biotronik and Boston Scientific rely on home communicators (cellular) tied to vendor clouds. Medtronic+1Abbott MediaRoombiotronik.com+1
+**Connectivity realities (important for your diagrams)**:
+* Implants historically talk over **MICS/MedRadio** because tissue attenuation and power budgets make Wi-Fi/5G in-can impractical. BLE is now common for patient-app pairing; full IP stacks live in the phone/hub. PMCBioMed Central
+* Concrete examples: Medtronic **BlueSync** (BLE → MyCareLink app/network); Abbott **Gallant** ICD/CRT-D (Bluetooth → myMerlinPulse). Biotronik and Boston Scientific rely on home communicators (cellular) tied to vendor clouds. Medtronic+1Abbott MediaRoombiotronik.com+1
 
-What already exists (state of the practice):
-	• Remote monitoring is standard of care for CIEDs and improves outcomes; large networks (LATITUDE, Merlin, CareLink) run at scale. Heart Rhythm Journal
-	• Cloud AI today: Medtronic AccuRhythm AI (deep learning) filters false AF/pause alerts on LINQ II ICMs (≈90%+ false-alert reduction in studies) and is applied in the cloud after data transmission. Boston Scientific HeartLogic (multi-sensor index in ICD/CRT-D) predicts impending HF decompensation weeks in advance and is surfaced through LATITUDE. These are the best current exemplars for your “central intelligence” layer. MedtronicPMCMedtronic Newswww.bostonscientific.comOnline JCF
+**What already exists (state of the practice)**:
+* **Remote monitoring is standard of care** for CIEDs and improves outcomes; large networks (LATITUDE, Merlin, CareLink) run at scale. Heart Rhythm Journal
+* **Cloud AI** today: Medtronic **AccuRhythm** AI (deep learning) filters false AF/pause alerts on LINQ II ICMs (≈90%+ false-alert reduction in studies) and is applied in the cloud after data transmission. Boston Scientific **HeartLogic** (multi-sensor index in ICD/CRT-D) predicts impending HF decompensation weeks in advance and is surfaced through LATITUDE. These are the best current exemplars for your “central intelligence” layer.
+ MedtronicPMCMedtronic Newswww.bostonscientific.comOnline JCF
 
 What to put inside the can vs. outside
 	• Inside (feasible now): low-power feature extraction, rule-based discriminators, lightweight anomaly scoring that’s bounded and testable; secure telemetry; cryptographically signed update mechanism (rarely used for in-can algorithms; more for device maintenance). Leadless designs tighten the power budget further. Wiley Online Library+1
