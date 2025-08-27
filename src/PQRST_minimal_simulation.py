@@ -1,3 +1,7 @@
+# 	No external dependencies besides numpy and matplotlib.
+#	One function ecg_wave() returns time and signal.
+#	Standard PQRST shape using simple Gaussians.
+
 import numpy as np
 import matplotlib.pyplot as plt
 
