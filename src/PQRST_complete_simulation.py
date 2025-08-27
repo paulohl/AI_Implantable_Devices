@@ -235,12 +235,14 @@ if __name__ == "__main__":
     plt.tight_layout()
     plt.show()
 
-# INSTRUCTIONS:
-# ============
+# CONFIGRATIONS:
+# =============
 # 
 # Change scenario = "normal" to a preset you want ("afib", "lbbb", "rbbb", "stemi", "pvc_bigeminy", "t_inversion").
 # 
 # Optional: tweak params (e.g., params["hr"] = 85 or params["st_shift"] = 0.15).
 #
 # Run ==> single-plot ECG with clinically annotated behavior in the code.
+# 
+# renders a clear, single-plot ECG with clinically annotated behavior in the code.
     
