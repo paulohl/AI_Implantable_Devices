@@ -11,7 +11,7 @@
 * **Domain B — In-can comms & very small inference**: authenticated telemetry (MICS/MedRadio 402–405 MHz; sometimes BLE) and only tiny, verifiable algorithms (e.g., morphology features, simple anomaly thresholds). Anything compute-hungry stays out of the can due to battery and validation constraints. [PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC10385670/?utm_source=chatgpt.com) [BioMed Central](https://biomedical-engineering-online.biomedcentral.com/articles/10.1186/s12938-024-01277-1?utm_source=chatgpt.com)
 * **Domain C — External relay + cloud (“central intelligence”)**: phone or bedside hub relays device data; the cloud runs heavy ML for triage, prediction, cohort analytics, and fleet risk. This is how current AI features ship in practice (e.g., Medtronic AccuRhythm AI runs in the CareLink cloud). [Medtronic](https://www.medtronic.com/en-us/healthcare-professionals/products/cardiac-rhythm/technologies/accurhythm-ai-algorithms.html?utm_source=chatgpt.com)
 
-**Connectivity realities (important for your diagrams)**:
+**Connectivity realities (important for diagrams)**:
 * Implants historically talk over **MICS/MedRadio** because tissue attenuation and power budgets make Wi-Fi/5G in-can impractical. BLE is now common for patient-app pairing; full IP stacks live in the phone/hub. [PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC10385670/?utm_source=chatgpt.com)  [BioMed Central](https://abbott.mediaroom.com/2020-07-06-Abbott-Receives-FDA-Approval-for-New-Heart-Rhythm-Devices-Featuring-Bluetooth-Connectivity-and-Continuous-Remote-Monitoring?utm_source=chatgpt.com)
 * Concrete examples: Medtronic **BlueSync** (BLE → MyCareLink app/network); Abbott **Gallant** ICD/CRT-D (Bluetooth → myMerlinPulse). Biotronik and Boston Scientific rely on home communicators (cellular) tied to vendor clouds. [Medtronic](https://www.medtronic.com/en-us/healthcare-professionals/products/cardiac-rhythm/technologies/bluesync-technology.html?utm_source=chatgpt.com)   [Abbott MediaRoom](https://www.medtronic.com/en-us/healthcare-professionals/products/cardiac-rhythm/technologies/bluesync-technology.html?utm_source=chatgpt.com)  [Biotronik](https://www.biotronik.com/en-us/products/cardiac-rhythm-management/remote-patient-monitoring-systems/biotronik-home-monitoring?utm_source=chatgpt.com)
 
@@ -24,7 +24,7 @@
 * **Inside (feasible now)**: low-power feature extraction, rule-based discriminators, lightweight anomaly scoring that’s bounded and testable; secure telemetry; cryptographically signed update mechanism (rarely used for in-can algorithms; more for device maintenance). Leadless designs tighten the power budget further. [Wiley Online Library](https://onlinelibrary.wiley.com/doi/abs/10.1002/adhm.202100614?utm_source=chatgpt.com)
 * **Outside**: anything adaptive/learning (cloud retraining, cohort drift monitoring, explainability reports), digital twins, risk stratification, clinic workload orchestration, policy-driven alerting. That’s how AccuRhythm and HeartLogic are operationalized today. [Medtronic](https://www.medtronic.com/en-us/healthcare-professionals/products/cardiac-rhythm/technologies/accurhythm-ai-algorithms.html?utm_source=chatgpt.com)  [Boston Scientific](https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology/heartlogic-heart-failure-diagnostic.html?utm_source=chatgpt.com)
 
-## Regulatory & security guardrails you’ll want to cite
+## Regulatory & security guardrails (important for references and citations)
 * **FDA Cybersecurity (Premarket) — Final guidance (updated June 2025)** sets expectations for threat modeling, SBOM, secure updates, incident response, and labeling. Use this to justify your end-to-end security architecture and update pipeline. [U.S. Food and Drug Administration](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cybersecurity-medical-devices-quality-system-considerations-and-content-premarket-submissions?utm_source=chatgpt.com)   [Federal Register](https://www.federalregister.gov/documents/2025/06/27/2025-11669/cybersecurity-in-medical-devices-quality-system-considerations-and-content-of-premarket-submissions?utm_source=chatgpt.com)    [Emergo by UL](https://www.emergobyul.com/news/fda-releases-final-guidance-medical-device-cybersecurity?utm_source=chatgpt.com)
 * **FDA PCCP (Predetermined Change Control Plans) for AI-enabled devices — Finalized Dec 2024, updated Aug 2025 page**. Lets you pre-authorize future model changes (great for your cloud AI and for any bounded in-can tweaks). Ropes & GrayMcDermott+U.S. Food and Drug Administration
 * **Closed-loop control considerations** (for any automated therapy logic you propose) + society consensus that remote monitoring is beneficial. [U.S. Food and Drug Administration](https://www.fda.gov/medical-devices/guidance-documents-medical-devices-and-radiation-emitting-products/recent-final-medical-device-guidance-documents?utm_source=chatgpt.com)     [Heart Rhythm Journal](https://www.heartrhythmjournal.com/article/S1547-5271%2823%2902011-8/fulltext?utm_source=chatgpt.com)
@@ -38,7 +38,7 @@
 3. **Cloud back office**:
 <br> ingestion (CareLink/Merlin/LATITUDE-like), device fleet IAM, SBOM tracking, PCCP-governed model registry, inference services (AccuRhythm/HeartLogic-style), clinician consoles, and FHIR-based EHR hooks. </br> [Medtronic](https://www.medtronic.com/en-us/healthcare-professionals/products/cardiac-rhythm/technologies/accurhythm-ai-algorithms.html?utm_source=chatgpt.com) [Boston Scientific](https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology/heartlogic-heart-failure-diagnostic.html?utm_source=chatgpt.com)
 
-## Practical constraints you should call out in any new paper
+## Practical constraints to call out
 * **Power budget dominates** (battery life targets 10–15 yrs; leadless devices even tighter). Any in-can ML must be tiny, fixed, and formally verifiable. [Cleveland ClinicWiley Online Library](
 * **RF & antenna physics** favor MICS/MedRadio for in-body links; Wi-Fi/5G belong in the external relay. [PMC](
 * **Field evidence favors the relay-and-cloud pattern** for AI gains (false-alert reduction, HF prediction). [Medtronic](    [Boston Scientific](
@@ -49,25 +49,25 @@
 * Reviews on MICS/MedRadio bands for implants; band rationale and tissue propagation. [PMC](   [BioMed Central](
 
 **Vendor technology pages (for concrete, citable features)**
-* Medtronic BlueSync + Azure MRI SureScan pacemaker (BLE, encryption, tablet programming, app-based monitoring). [Medtronic](
-* Abbott Gallant ICD/CRT-D (Bluetooth, myMerlinPulse). [Abbott MediaRoom](
-* Boston Scientific LATITUDE remote monitoring system. [Boston Scientific](
-* Biotronik **Home Monitoring** and **CardioMessenger** cellular relay. [Biotronik](
+* Medtronic **BlueSync** + Azure MRI SureScan pacemaker (BLE, encryption, tablet programming, app-based monitoring). [Medtronic](https://www.medtronic.com/en-us/healthcare-professionals/products/cardiac-rhythm/technologies/bluesync-technology.html?utm_source=chatgpt.com)
+* Abbott **Gallant** ICD/CRT-D (Bluetooth, myMerlinPulse). [Abbott MediaRoom](https://abbott.mediaroom.com/2020-07-06-Abbott-Receives-FDA-Approval-for-New-Heart-Rhythm-Devices-Featuring-Bluetooth-Connectivity-and-Continuous-Remote-Monitoring?utm_source=chatgpt.com)
+* Boston Scientific **LATITUDE** remote monitoring system. [Boston Scientific](https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/remote-monitoring-system.html?utm_source=chatgpt.com)
+* Biotronik **Home Monitoring** and **CardioMessenger** cellular relay. [Biotronik](https://www.biotronik.com/en-us/products/cardiac-rhythm-management/remote-patient-monitoring-systems/biotronik-home-monitoring?utm_source=chatgpt.com)
 
 **AI now in CIED ecosystems**
-* Medtronic AccuRhythm AI (cloud DL filtering of AF/pause alerts on LINQ II; peer-review + AHA data). [Medtronic](    [Medtronic News](    [PMC](
-* Boston Scientific HeartLogic (multi-sensor HF decompensation prediction; MultiSENSE + follow-on studies). [Boston Scientific](   [Online JCF](
+* Medtronic AccuRhythm AI (cloud DL filtering of AF/pause alerts on LINQ II; peer-review + AHA data). [Medtronic](https://www.medtronic.com/en-us/healthcare-professionals/products/cardiac-rhythm/technologies/accurhythm-ai-algorithms.html?utm_source=chatgpt.com)    [Medtronic News](https://news.medtronic.com/New-data-demonstrates-Medtronic-LINQ-II-insertable-cardiac-monitors-and-AccuRhythm-AI-algorithm-further-reduce-false-alerts?utm_source=chatgpt.com)    [PMC](
+* Boston Scientific HeartLogic (multi-sensor HF decompensation prediction; MultiSENSE + follow-on studies). [Boston Scientifihttps://news.medtronic.com/New-data-demonstrates-Medtronic-LINQ-II-insertable-cardiac-monitors-and-AccuRhythm-AI-algorithm-further-reduce-false-alerts?utm_source=chatgpt.comc](https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology/heartlogic-heart-failure-diagnostic.html?utm_source=chatgpt.com)  [Online JCF](https://onlinejcf.com/article/S1071-9164%2823%2900868-0/fulltext?utm_source=chatgpt.com)
 
 **Consensus & outcomes**
-* 2023 HRS/EHRA/APHRS/LAHRS expert consensus on remote monitoring for CIEDs (standard of care). [Heart Rhythm Journal](
+* 2023 HRS/EHRA/APHRS/LAHRS expert consensus on remote monitoring for CIEDs (standard of care). [Heart Rhythm Journal](https://www.heartrhythmjournal.com/article/S1547-5271%2823%2902011-8/fulltext?utm_source=chatgpt.com)
 
 **Security & recalls (use as cautionary design patterns)**
-* Abbott/St. Jude 2017 pacemaker firmware cyber mitigation (FDA safety communication). [ASA](
-* Medtronic Conexus telemetry vulnerabilities (CISA advisory; CVE-2019-6538). [CISANVD](
+* Abbott/St. Jude 2017 pacemaker firmware cyber mitigation (FDA safety communication). [ASA](https://www.asahq.org/advocacy-and-asapac/fda-and-washington-alerts/fda-alerts/2017/08/implantable-cardiac-pacemakers-by-abbott-firmware-update-cybersecurity-vulnerabilities?utm_source=chatgpt.com)
+* Medtronic Conexus telemetry vulnerabilities (CISA advisory; CVE-2019-6538). [CISA](https://www.cisa.gov/news-events/ics-medical-advisories/icsma-19-080-01?utm_source=chatgpt.com)    [NVD](https://nvd.nist.gov/vuln/detail/cve-2019-6538?utm_source=chatgpt.com)
 
-**Regulatory playbooks for your “learning” claims**
-* FDA PCCP final guidance (Dec 2024; summarized pages updated Aug 2025). [McDermott](      [U.S. Food and Drug Administration](
-* FDA Cybersecurity premarket guidance (replaced 2023 version in June 2025). [U.S. Food and Drug Administration](      [RAPS](
+**Regulatory playbooks for “learning” claims**
+* **FDA PCCP** final guidance (Dec 2024; summarized pages updated Aug 2025). [McDermott](https://www.mcdermottplus.com/insights/fda-issues-final-guidance-on-predetermined-change-control-plans-for-ai-enabled-devices/?utm_source=chatgpt.com)     [U.S. Food and Drug Administration](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/marketing-submission-recommendations-predetermined-change-control-plan-artificial-intelligence?utm_source=chatgpt.com)
+* **FDA Cybersecurity** premarket guidance (replaced 2023 version in June 2025). [U.S. Food and Drug Administration](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cybersecurity-medical-devices-quality-system-considerations-and-content-premarket-submissions?utm_source=chatgpt.com)      [RAPS](https://www.raps.org/news-and-articles/news-articles/2025/6/fda-replaces-cybersecurity-guidance-for-medical-de?utm_source=chatgpt.com)
 
-### So—how far can we “dissect” advanced pacemakers?
-Deep enough to build credible, publishable AI architectures that align with what’s on the market and what regulators expect—without needing proprietary schematics. We can document the canonical in-can blocks and show precisely which AI functions live where (and why), then back every arrow with an FDA or peer-review citation. That’s exactly how Medtronic and Boston Scientific deliver AI benefits today: tiny, bounded logic inside; learning and heavy inference outside. [Medtronic](     [Boston Scientific](
+### So: how far can we “dissect” advanced pacemakers?
+Deep enough to build credible, **publishable** AI architectures that align with what’s on the market and what regulators expect—without needing proprietary schematics. We can document the canonical in-can blocks and show precisely which AI functions live where (and why), then back every arrow with an FDA or peer-review citation. That’s exactly how Medtronic and Boston Scientific deliver AI benefits today: tiny, bounded logic inside; **learning and heavy inference outside**. [Medtronic](https://www.medtronic.com/en-us/healthcare-professionals/products/cardiac-rhythm/technologies/accurhythm-ai-algorithms.html?utm_source=chatgpt.com)   [Boston Scientific](https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology/heartlogic-heart-failure-diagnostic.html?utm_source=chatgpt.com)
