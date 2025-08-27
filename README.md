@@ -52,7 +52,10 @@ ________
 2. **Patient relay**:
 <br> smartphone app (BLE) or bedside communicator (cellular) doing secure store-and-forward, retries, and local privacy controls. </br> [Medtronic](https://www.medtronic.com/en-us/healthcare-professionals/products/cardiac-rhythm/technologies/bluesync-technology.html?utm_source=chatgpt.com)       [Boston Scientific](https://www.bostonscientific.com/en-US/patients-caregivers/treatments-conditions/remote-monitoring-system.html?utm_source=chatgpt.com)
 3. **Cloud back office**:
-<br> ingestion (CareLink/Merlin/LATITUDE-like), device fleet IAM, SBOM tracking, PCCP-governed model registry, inference services (AccuRhythm/HeartLogic-style), clinician consoles, and FHIR-based EHR hooks. </br> [Medtronic](https://www.medtronic.com/en-us/healthcare-professionals/products/cardiac-rhythm/technologies/accurhythm-ai-algorithms.html?utm_source=chatgpt.com) [Boston Scientific](https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology/heartlogic-heart-failure-diagnostic.html?utm_source=chatgpt.com)
+<br> ingestion (CareLink/Merlin/LATITUDE-like), device fleet IAM, SBOM tracking, PCCP-governed model registry, inference services (AccuRhythm/HeartLogic-style), clinician consoles, and FHIR-based EHR hooks. </br> [Medtronic](https://www.medtronic.com/en-us/healthcare-professionals/products/cardiac-rhythm/technologies/accurhythm-ai-algorithms.html?utm_source=chatgpt.com) [Boston Scientific](https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology/heartlogic-heart-failure-diagnostic.html?utm_source=chatgpt.com):
+
+
+![alt text](https://github.com/paulohl/AI_Implantable_Devices/blob/main/img/implantPM.png "Architecture Concept")
 
 _________
 
