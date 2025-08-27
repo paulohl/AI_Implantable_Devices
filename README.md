@@ -39,30 +39,35 @@
 <br> ingestion (CareLink/Merlin/LATITUDE-like), device fleet IAM, SBOM tracking, PCCP-governed model registry, inference services (AccuRhythm/HeartLogic-style), clinician consoles, and FHIR-based EHR hooks. </br> [Medtronic](https://www.medtronic.com/en-us/healthcare-professionals/products/cardiac-rhythm/technologies/accurhythm-ai-algorithms.html?utm_source=chatgpt.com) [Boston Scientific](https://www.bostonscientific.com/en-US/medical-specialties/electrophysiology/heartlogic-heart-failure-diagnostic.html?utm_source=chatgpt.com)
 
 ## Practical constraints you should call out in any new paper
-* Power budget dominates (battery life targets 10–15 yrs; leadless devices even tighter). Any in-can ML must be tiny, fixed, and formally verifiable. Cleveland ClinicWiley Online Library
-* RF & antenna physics favor MICS/MedRadio for in-body links; Wi-Fi/5G belong in the external relay. PMC
-* Field evidence favors the relay-and-cloud pattern for AI gains (false-alert reduction, HF prediction). Medtronicwww.bostonscientific.com
+* **Power budget dominates** (battery life targets 10–15 yrs; leadless devices even tighter). Any in-can ML must be tiny, fixed, and formally verifiable. [Cleveland ClinicWiley Online Library](
+* **RF & antenna physics** favor MICS/MedRadio for in-body links; Wi-Fi/5G belong in the external relay. [PMC](
+* **Field evidence favors the relay-and-cloud pattern** for AI gains (false-alert reduction, HF prediction). [Medtronic](    [Boston Scientific](
 
 ## Curated reference pack (start here)
 
-Device radios & antennas
+**Device radios & antennas**
 * Reviews on MICS/MedRadio bands for implants; band rationale and tissue propagation. [PMC](   [BioMed Central](
-Vendor technology pages (for concrete, citable features)
-* Medtronic BlueSync + Azure MRI SureScan pacemaker (BLE, encryption, tablet programming, app-based monitoring). Medtronic+1
+
+**Vendor technology pages (for concrete, citable features)**
+* Medtronic BlueSync + Azure MRI SureScan pacemaker (BLE, encryption, tablet programming, app-based monitoring). [Medtronic](
 * Abbott Gallant ICD/CRT-D (Bluetooth, myMerlinPulse). [Abbott MediaRoom](
 * Boston Scientific LATITUDE remote monitoring system. [Boston Scientific](
 * Biotronik **Home Monitoring** and **CardioMessenger** cellular relay. [Biotronik](
-AI now in CIED ecosystems
-* Medtronic AccuRhythm AI (cloud DL filtering of AF/pause alerts on LINQ II; peer-review + AHA data). MedtronicMedtronic NewsPMC
-* Boston Scientific HeartLogic (multi-sensor HF decompensation prediction; MultiSENSE + follow-on studies). www.bostonscientific.com+1Online JCF
-Consensus & outcomes
-* 2023 HRS/EHRA/APHRS/LAHRS expert consensus on remote monitoring for CIEDs (standard of care). Heart Rhythm Journal
-Security & recalls (use as cautionary design patterns)
-* Abbott/St. Jude 2017 pacemaker firmware cyber mitigation (FDA safety communication). ASA
-* Medtronic Conexus telemetry vulnerabilities (CISA advisory; CVE-2019-6538). CISANVD
-Regulatory playbooks for your “learning” claims
-* FDA PCCP final guidance (Dec 2024; summarized pages updated Aug 2025). McDermott+U.S. Food and Drug Administration
-* FDA Cybersecurity premarket guidance (replaced 2023 version in June 2025). U.S. Food and Drug AdministrationRAPS
+
+**AI now in CIED ecosystems**
+* Medtronic AccuRhythm AI (cloud DL filtering of AF/pause alerts on LINQ II; peer-review + AHA data). [Medtronic](    [Medtronic News](    [PMC](
+* Boston Scientific HeartLogic (multi-sensor HF decompensation prediction; MultiSENSE + follow-on studies). [Boston Scientific](   [Online JCF](
+
+**Consensus & outcomes**
+* 2023 HRS/EHRA/APHRS/LAHRS expert consensus on remote monitoring for CIEDs (standard of care). [Heart Rhythm Journal](
+
+**Security & recalls (use as cautionary design patterns)**
+* Abbott/St. Jude 2017 pacemaker firmware cyber mitigation (FDA safety communication). [ASA](
+* Medtronic Conexus telemetry vulnerabilities (CISA advisory; CVE-2019-6538). [CISANVD](
+
+**Regulatory playbooks for your “learning” claims**
+* FDA PCCP final guidance (Dec 2024; summarized pages updated Aug 2025). [McDermott](      [U.S. Food and Drug Administration](
+* FDA Cybersecurity premarket guidance (replaced 2023 version in June 2025). [U.S. Food and Drug Administration](      [RAPS](
 
 ### So—how far can we “dissect” advanced pacemakers?
 Deep enough to build credible, publishable AI architectures that align with what’s on the market and what regulators expect—without needing proprietary schematics. We can document the canonical in-can blocks and show precisely which AI functions live where (and why), then back every arrow with an FDA or peer-review citation. That’s exactly how Medtronic and Boston Scientific deliver AI benefits today: tiny, bounded logic inside; learning and heavy inference outside. [Medtronic](     [Boston Scientific](
