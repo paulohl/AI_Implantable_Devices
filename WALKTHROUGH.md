@@ -52,8 +52,9 @@ _____________
 Treat this sketch as the **master macro diagram**, then:
 
 1. Duplicate it and “zoom” on each layer to show internals.
-2. Annotate with **citations to current vendor practice** (e.g., Medtronic LINQ II + AccuRhythm AI, Boston Scientific HeartLogic, Abbott Gallant BLE connectivity).
-3. Use minimalist coloring (as you already did: black + light blue highlights) for visual consistency with modern cloud architecture diagrams.
+2. Annotate with **citations to current vendor practice**
+    - (e.g., Medtronic LINQ II + AccuRhythm AI, Boston Scientific HeartLogic, Abbott Gallant BLE connectivity).
+4. Minimalist coloring (black + light blue highlights) for visual consistency with modern cloud architecture diagrams.
 
 _____________
 
